@@ -2,12 +2,12 @@ import { TLoginSchema } from "@/types/zod";
 import { signIn, signOut } from "next-auth/react";
 
 export async function CredentialSignIn(data: TLoginSchema) {
-  const response = await signIn("credentials", {
+  const { url, ok, error } = await signIn("credentials", {
     ...data,
-    redirect: true
-  }) 
+    redirect: false
+  })
 
-  return response
+  return {url, ok, error}
 }
 
 export async function CredentialSignOut() {

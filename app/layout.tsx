@@ -3,6 +3,7 @@ import AppProvider from "./_providers/theme";
 import { Geist, Geist_Mono, Noto_Sans, Nunito_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const nunitoSansHeading = Nunito_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -42,6 +43,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+
+          <Toaster />
         </AppProvider>
       </body>
     </html>

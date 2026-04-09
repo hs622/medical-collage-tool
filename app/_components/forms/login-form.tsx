@@ -23,15 +23,18 @@ import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TLoginSchema, LoginSchema } from '@/types/zod';
 import { CredentialSignIn } from "@/app/actions/auth-actions";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter()
 
   const {
     register,
-    // reset,
+    reset,
     formState: { errors, isSubmitting },
     handleSubmit
   } = useForm<TLoginSchema>({
@@ -39,11 +42,17 @@ export default function LoginForm({
   })
 
   async function handleFormSubmit(data: TLoginSchema) {
-    await CredentialSignIn(data);
+    const response = await CredentialSignIn(data);
+    console.log(response)
 
-    // console.log({status})
-    // console.log({url})
-    // console.log(code, ok, error)
+    if (response?.error)
+      toast.error("Error! Invalid credentials", {
+        position: "bottom-right",
+      })
+    else {
+      reset()
+      router.push(response?.url as string)
+    }
   }
 
   return (
