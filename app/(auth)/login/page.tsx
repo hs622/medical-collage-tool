@@ -1,5 +1,5 @@
-import Link from "next/link"; 
-import { ThemeToggle } from "../../_components/theme-toggle";
+import Link from "next/link";
+import { ThemeToggle } from "../../_components/buttons/theme-toggle";
 import LoginForm from "../../_components/forms/login-form";
 import { Suspense } from "react";
 import { Metadata } from "next";
@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="bg-muted">
-      <div className="p-4 float-end">
-        <ThemeToggle />
+    <div className=" w-full bg-muted">
+      <div className="absolute w-full">
+        <div className="relative float-end p-4">
+          <ThemeToggle />
+        </div>
       </div>
       <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <div className="flex w-full max-w-sm flex-col gap-6">
@@ -22,7 +24,7 @@ export default function Page() {
             </div>
             aku.
           </Link>
-          <Suspense>
+          <Suspense fallback="loading...">
             <LoginForm />
           </Suspense>
         </div>
