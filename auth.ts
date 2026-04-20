@@ -1,8 +1,8 @@
 import NextAuth, { User, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialProvider from "next-auth/providers/credentials";
-import { LoginSchema } from "./types/zod";
-import { AdapterUser } from "next-auth/adapters";
+import { LoginSchema } from "./types/validations.zod";
+import { AdapterUser } from "next-auth/adapters";   
 
 const dummyUsers: User[] = [
   {
