@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Noto_Sans, Nunito_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import ReduxProvider from "./_providers/redux";
 
 const nunitoSansHeading = Nunito_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -36,16 +37,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" >
-        <AppProvider
-          attribute={"class"}
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
 
-          <Toaster />
-        </AppProvider>
+        <ReduxProvider >
+          <AppProvider
+            attribute={"class"}
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+          </AppProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
