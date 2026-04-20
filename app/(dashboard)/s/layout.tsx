@@ -1,4 +1,4 @@
-import MainNavbar from "@/app/_components/navbar/main-navbar.student";
+// import MainNavbar from "@/app/_components/navbar/main-navbar.student";
 import { CredentialSignOut } from "@/app/actions/auth-actions";
 import { auth } from "@/auth"; 
 import { getDashboard } from "@/lib/routing";
@@ -21,7 +21,7 @@ export default async function StudentLayout({ children }: { children: ReactNode 
 
   return (
     <div className="bg-muted h-screen">
-      <MainNavbar />  
+      {/* <MainNavbar />   */}
       <div className="bg-background h-[calc(100dvh-115px)] rounded-xl m-2 shadow-sm overflow-hidden">
         {children}
       </div>
