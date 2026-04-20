@@ -1,5 +1,4 @@
-import { ReactNode } from "react"
-import { AppSidebar } from "../../_components/app-sidebar"
+import { ReactNode } from "react" 
 import { SiteHeader } from "../../_components/site-header"
 import {
   SidebarInset,
@@ -8,9 +7,10 @@ import {
 import TTProvider from "../../_providers/tooltip"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
-import { TRole } from "@/types/zod"
-import { getDashboard } from "@/proxy"
+import { TRole } from "@/types/validations.zod" 
 import { CredentialSignOut } from "@/app/actions/auth-actions"
+import { getDashboard } from "@/lib/routing"
+import { AppSidebar } from "@/app/_components/server/app-sidebar"
 
 export default async function DashboardLayout({
   children
