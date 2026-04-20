@@ -21,7 +21,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form";
 import { Spinner } from "@/components/ui/spinner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TLoginSchema, LoginSchema } from '@/types/zod';
+import { TLoginSchema, LoginSchema } from '@/types/validations.zod';
 import { CredentialSignIn } from "@/app/actions/auth-actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
