@@ -1,6 +1,6 @@
 import { DefaultSession, User as DefaultUser } from "next-auth";
 import { DefaultJWT } from "next-auth/jwt";
-import { TRole } from "./zod";
+import { TRole } from "./validations.zod";
 
 declare module "next-auth" {
   interface Session {

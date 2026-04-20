@@ -49,3 +49,31 @@ export const resetPassword = z
   });
 
 export type ResetFormValues = z.infer<typeof resetPassword>;
+
+
+
+// -------------------------------------- Modules Form Validations --------------------------------------------------------
+
+export const CreateModuleSchema = z.object({
+  csrf_token: z.string(),
+  title: z.string().min(1, "Title is required").max(72, "Title must be less than 72 characters."),
+  description: z.string().optional(),
+  visibility: z.enum(["on", "off"]),
+  year: z.string("Please select the year to associate the module.")
+})
+
+export type TCreateModule = z.infer<typeof CreateModuleSchema>;
+
+// ------------------------------------- Session Form Validations ----------------------------------------------------------
+
+export const CreateSessionSchema = z.object({
+  crsf_token: z.string(),
+  title: z.string().min(1, "Title is required!"),
+  description: z.string().optional(),
+  visibility: z.enum(["on", "off"]),
+  faculty_id: z.string(),
+  session_id: z.string(),
+  venue_id: z.string(),
+  dates: z.array(z.string()).min(1, "dates are required!"),
+  time: z.string("Time is requried") 
+})
