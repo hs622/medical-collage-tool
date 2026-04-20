@@ -1,8 +1,8 @@
 import MainNavbar from "@/app/_components/navbar/main-navbar.student";
 import { CredentialSignOut } from "@/app/actions/auth-actions";
-import { auth } from "@/auth";
-import { getDashboard } from "@/proxy";
-import { TRole } from "@/types/zod";
+import { auth } from "@/auth"; 
+import { getDashboard } from "@/lib/routing";
+import { TRole } from "@/types/validations.zod";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react"; 
 
