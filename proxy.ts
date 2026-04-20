@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "./auth";
 import { NextAuthRequest } from "next-auth";
 import { TRole } from "./types/validations.zod";  
-import { getDashboard, isPublicPath, PUBLIC_ROUTES } from "./lib/routing";
+import { getDashboard, isPublicPath, PUBLIC_ROUTES } from "@/lib/routing";
 
 export default auth((request: NextAuthRequest) => {
   const { pathname } = request.nextUrl;
