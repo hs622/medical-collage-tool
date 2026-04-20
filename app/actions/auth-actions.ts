@@ -1,4 +1,4 @@
-import { TLoginSchema } from "@/types/zod";
+import { TLoginSchema } from "@/types/validations.zod";
 import { signIn, signOut } from "next-auth/react";
 
 export async function CredentialSignIn(data: TLoginSchema) {
