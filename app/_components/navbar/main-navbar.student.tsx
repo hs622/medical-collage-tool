@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,8 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { ThemeToggle } from "../theme-toggle";
-import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "../buttons/theme-toggle";
 
 
 export default function MainNavbar() {
