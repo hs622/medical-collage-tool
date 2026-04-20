@@ -2,11 +2,14 @@
 
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
-import { ThemeToggle } from "./theme-toggle"
-import { usePathname } from "next/navigation";
+import { ThemeToggle } from "./buttons/theme-toggle"
+import { usePathname } from "next/navigation"; 
+import NotificationButton from "./buttons/notification-btn";
+import { ButtonGroup } from "@/components/ui/button-group";
+ 
 
 export function SiteHeader() {
-  const [pathname] = usePathname()
+  const pathname = usePathname()
 
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
@@ -16,11 +19,16 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">{pathname}</h1>
+        <div className="text-sm"> {pathname} </div>
+
         <div className="ml-auto flex items-center gap-2">
-          <ThemeToggle />
+          <ButtonGroup>
+            <ThemeToggle />
+            <NotificationButton />
+          </ButtonGroup>
         </div>
+ 
       </div>
     </header>
   )
-}
+} 
