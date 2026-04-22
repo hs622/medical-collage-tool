@@ -1,7 +1,7 @@
 // import { ApiResponseObject } from "@/types/api.zod";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchModuleData = createAsyncThunk(
+export const fetchModules = createAsyncThunk(
   "modules/fetchModules",
   async (_, { rejectWithValue }) => {
     try {

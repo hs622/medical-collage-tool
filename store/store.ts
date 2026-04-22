@@ -1,9 +1,15 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import ModuleSlice from "./slices/moduleSlice";
+import ModuleSlice from "./slices/table/moduleSlice";
+import RoleSlice from './slices/table/roleSlice';
+
+const tableSlices = combineReducers({
+  module: ModuleSlice,
+  roles: RoleSlice,
+});
 
 export const store = configureStore({
   reducer: combineReducers({
-    module: ModuleSlice,
+    table: tableSlices,
   }),
 });
 
