@@ -6,15 +6,16 @@ import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } fro
 import { DataTableProps } from "../common";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect } from "react";
-import { fetchModuleData } from "@/store/thunks/module.api";
+import { fetchModules } from "@/store/thunks/module.api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ModuleTable<TData, TValue>({ columns }: DataTableProps<TData, TValue>) {
 
-  const { data, status } = useAppSelector(state => state.module)
+  const { data, status } = useAppSelector(state => state.table.module)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchModuleData())
+    dispatch(fetchModules())
   }, [dispatch])
 
   const table = useReactTable({
@@ -25,46 +26,57 @@ export default function ModuleTable<TData, TValue>({ columns }: DataTableProps<T
   })
 
   return (
-    <Table className="border rounded-md overflow-hidden bg-muted">
-      <TableHeader>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id} className="text-xs">
-            {headerGroup.headers.map((header) => (
-              <TableHead key={header.id}>
-                {header.isPlaceholder ? null : flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </TableHead>
-            ))}
-          </TableRow>
-        ))}
-      </TableHeader>
+    <div className="border rounded-md overflow-hidden">
+      <Table className="">
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id} className="text-xs">
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
 
-      <TableBody>
-        {status == "succeeded" && (
-          table.getRowModel().rows ? (
-            table.getRowModel().rows?.map((row) => (
-              <TableRow
-                key={row.id}
-                className="text-xs"
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+        <TableBody>
+          {status != "succeeded" && (
+            [...Array(5)].map(i => (
+              <TableRow key={i}>
+                <TableCell colSpan={columns.length}>
+                  <Skeleton className="h-7" />
+                </TableCell>
               </TableRow>
             ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={8} className="text-center text-xs py-10">
-                Not Found
-              </TableCell>
-            </TableRow>
-          )
-        )}
-      </TableBody>
-    </Table>
+          )}
+          {status == "succeeded" && (
+            table.getRowModel().rows ? (
+              table.getRowModel().rows?.map((row) => (
+                <TableRow
+                  key={row.id}
+                  className="text-xs"
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="text-center text-xs py-10">
+                  Not Found
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
+    </div>
   )
 }

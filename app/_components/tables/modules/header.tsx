@@ -11,7 +11,7 @@ import { Pencil } from "lucide-react";
 import { RefreshCcw } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { fetchModuleData } from '@/store/thunks/module.api';
+import { fetchModules } from '@/store/thunks/module.api';
 
 export default function ModuleHeader() {
   const router = useRouter()
@@ -35,10 +35,10 @@ export default function ModuleHeader() {
   return (
     <div className="flex justify-between gap-4 pb-4">
       <FieldGroup>
-        <Input className="w-32" placeholder="Search" />
+        <Input className="w-56" placeholder="Search" />
       </FieldGroup>
       <ButtonGroup>
-        <Button type="button" variant={"outline"} onClick={() => dispatch(fetchModuleData())}>
+        <Button type="button" variant={"outline"} onClick={() => dispatch(fetchModules())}>
           <RefreshCcw />
         </Button>
         <Button type="button" variant={"outline"} onClick={FormRequest}>

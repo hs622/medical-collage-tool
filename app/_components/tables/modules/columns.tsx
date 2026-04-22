@@ -41,7 +41,7 @@ export const columns: ColumnDef<TModulesTableSchema>[] = [
     header: "Associated",
     cell: ({ row }) => (
       <div>
-
+        {row.original.has_associated}
       </div>
     ),
   },
