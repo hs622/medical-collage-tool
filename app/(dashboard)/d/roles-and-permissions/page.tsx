@@ -1,4 +1,8 @@
+import { columns } from "@/app/_components/tables/roles/columns"
+import RoleHeader from "@/app/_components/tables/roles/header"
+import RolesTable from "@/app/_components/tables/roles/roles.table"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -14,7 +18,7 @@ export default function Page() {
 
           <div className="flex gap-2 px-4">
             <Roles className="flex-2">
-              <RolesTable />
+              <RolesTable columns={columns} />
             </Roles>
             <Card className="flex-1 px-2">
               <CardTitle>
@@ -29,27 +33,16 @@ export default function Page() {
 }
 
 
-function Roles({ children, ...props }: React.ComponentProps<"div">) {
+function Roles({ className, children, ...props }: React.ComponentProps<"div">) {
 
   return (
-    <Card {...props}>
-      <CardTitle className="px-2">
+    <div className={cn("border rounded-md overflow-hidden", className)} {...props}>
+      <div className="flex flex-col gap-2 px-4 py-4">
         Roles
-      </CardTitle>
-      <CardContent className="px-2">
-        {children}
-      </CardContent>
-    </Card>
+        <RoleHeader />
+      </div>
+      <div className="px-4"> {children} </div>
+    </div>
   )
 }
-
-function RolesTable() {
-
-  return (
-    <table>
-      
-    </table>
-  )
-}
-
 
