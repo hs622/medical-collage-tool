@@ -6,6 +6,8 @@ export const DEFAULT_SKIP = 0;
 
 // ---------- Roles ---------------------------------------------- 
 
+export const ROLES_COLUMNS = `id, title, slug, level, is_associated, created_at, updated_at`;
+
 // ---------- Users ----------------------------------------------
 
 // ---------- Modules --------------------------------------------
